@@ -15,3 +15,22 @@ Guest yang pertama menandakan username pengguna yang dipakai untuk authenticatio
 ![Slow Subscriber Screenshot](assets/images/slow_subscriber.png)
 
 Dari gambar tersebut terlihat bahwa rate penerimaan data Subscriber dari message broker menjadi lambat dengan delay sekitar 1 detik dalam setiap proses. Total banyak queue pada komputer saya adalah 35 dalam menjalankan 10 kali cargo run di Publisher.
+
+## Reflection and Running at least three subscribers
+
+Publisher
+![Publisher](assets/images/publisher.png)
+
+Subscriber 1
+![Subscriber 1](assets/images/subscriber1.png)
+
+Subscriber 2
+![Subscriber 2](assets/images/subscriber2.png)
+
+Subscriber 3
+![Subscriber 3](assets/images/subscriber3.png)
+
+RabbitMQ Chart
+![RabbitMQ Monitoring](assets/images/rabbitmq.png)
+
+Dengan menjalankan cargo run pada subscriber di 3 console berbeda, maka ketiga subscriber akan terhubung ke 1 publisher. Karena ketiga subscriber berjalan secara paralel dan terhubung ke satu publisher, maka pengiriman data akan menjadi lebih cepat dan terdistribusi pada console yang terhubung dibandingkan menjalankan 1 subscriber di 1 console saja. Hal ini terjadi karena message broker akan mendistribusikan data yang diterima dari Publisher ke banyak subscribers yang terhubung.
